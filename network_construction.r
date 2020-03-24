@@ -1,8 +1,4 @@
-# degs_pid = read.csv("./../degs_probeids", header = F, stringsAsFactors = F)
-# net_dat = read.csv("../Ovarian Cancer/Ovarian Cancer/clust_result/Input_files_and_params/Data/exp_for_clustering_degs.txt", stringsAsFactors = F, sep = "\t", row.names = 1)
-# net_dat_degs = net_dat[match(degs_pid$V1, rownames(net_dat)),]
-# write.csv(net_dat_degs, "./new network/network_data_3065.csv")
-# net_dat_degs = t(scale(t(net_dat_degs), center = T, scale = T))
+
 net_dat_degs = read.csv("./new network/network_data_29-12-2019_new.csv", row.names = 1, stringsAsFactors = F)
 net_dat_degs = t(scale(t(net_dat_degs), center = T, scale = T))
 
@@ -339,7 +335,7 @@ export_network_to_graphml <- function (adj_mat, filename=NULL, weighted=TRUE,
   is_zero     <- adj_mat == 0
   is_negative <- adj_mat < 0
   
-  #  adj_mat <- (abs(adj_mat) - threshold) / (max(adj_mat) - threshold)
+  adj_mat <- (abs(adj_mat) - threshold) / (max(adj_mat) - threshold)
   adj_mat[is_zero] <- 0
   adj_mat[is_negative] <- -adj_mat[is_negative]
   
